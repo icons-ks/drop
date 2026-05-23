@@ -1,15 +1,11 @@
 #!/bin/bash
-# -------------------------------------------------------------------
-# All-in-one Linux log & trace cleaner
-# WARNING: This script removes forensic evidence. Use responsibly.
-# -------------------------------------------------------------------
 
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run as root (sudo)." 
    exit 1
 fi
 
-# 1. Clear shell histories (bash, zsh, ash, sh)
+# 1. Clear  histories (bash, zsh, ash, sh)
 for user_home in /home/* /root; do
     if [[ -d "$user_home" ]]; then
         > "$user_home/.bash_history" 2>/dev/null
