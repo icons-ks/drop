@@ -9,14 +9,6 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-echo "WARNING: This will erase most logs, histories, and timestamps."
-echo "Type 'YES' to continue: "
-read confirm
-if [[ "$confirm" != "YES" ]]; then
-    echo "Aborted."
-    exit 0
-fi
-
 # 1. Clear shell histories (bash, zsh, ash, sh)
 for user_home in /home/* /root; do
     if [[ -d "$user_home" ]]; then
