@@ -79,7 +79,7 @@ if command -v dnf &>/dev/null; then
     dnf clean all
 fi
 
-# 10. Remove SSH logs and known hosts traces
+# 10. Remove SSH logs
 > /var/log/sshd.log 2>/dev/null
 > /var/log/secure 2>/dev/null
 for user in /home/* /root; do
@@ -97,7 +97,7 @@ echo > /var/log/btmp
 # find /var/log -type f -exec touch -t 197001010000 {} \; 2>/dev/null
 # find /home -type f -name ".*history" -exec touch -t 197001010000 {} \; 2>/dev/null
 
-# 13. Stop logging daemons (temporarily) to prevent re‑logging
+# 13. Stop logging daemons (temporarily)
 systemctl stop rsyslog 2>/dev/null
 systemctl stop syslog 2>/dev/null
 systemctl stop systemd-journald 2>/dev/null
@@ -108,5 +108,5 @@ set +o history
 export HISTFILE=/dev/null
 export HISTSIZE=0
 
-echo "All traces have been cleared. Reboot recommended for full effect."
+echo "Logs have been cleared. Reboot recommended for full effect."
 echo "To re-enable logging, reboot or manually start services."
